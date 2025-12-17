@@ -1,0 +1,362 @@
+/* ========== ADMIN STAFF MANAGER (admin-staff-manager.css) ========== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== LAYOUT CHUNG ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #eef2f7;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* cho .main-content nếu dùng */
+.main-content {
+  flex: 1;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #c8102e;
+  padding: 6px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-brand img {
+  height: 32px;
+  width: auto;
+}
+
+#welcomeUser {
+  color: #fff;
+  font-weight: 600;
+}
+
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 14px !important;
+  border-radius: 999px;
+  transition: 0.25s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  background: rgba(255,255,255,0.92);
+  color: #c8102e !important;
+}
+
+/* LOGIN / LOGOUT */
+.login-btn,
+.logoutBtn {
+  background: #fff;
+  color: #c8102e;
+  border: none;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 20px;
+  transition: 0.25s ease;
+}
+
+.login-btn:hover,
+.logoutBtn:hover {
+  background: #ffe5e5;
+  color: #9e0d23;
+}
+
+/* ===== DASHBOARD LAYOUT ===== */
+.dashboard {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  flex: 1;
+}
+
+/* SIDEBAR */
+.dashboard-left {
+  width: 22%;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.dashboard-title {
+  text-align: center;
+  font-weight: 700;
+  color: #c8102e;
+  margin-bottom: 15px;
+}
+
+.dashboard-left .avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.dashboard-left .avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #c8102e;
+  object-fit: cover;
+}
+
+.dashboard-left a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.dashboard-left a:hover,
+.dashboard-left a.active {
+  background: #ffeaea;
+  color: #c8102e;
+  border-left: 4px solid #c8102e;
+}
+
+.dashboard-left i {
+  font-size: 22px;
+  color: #c8102e;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  width: 78%;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  min-height: 80vh;
+}
+
+.main-content h3,
+.main-content h2 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* CARD + TABLE STAFF */
+.card {
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.card-header {
+  background-color: #c8102e;
+  color: #fff;
+  border-radius: 14px 14px 0 0 !important;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  border: none;
+}
+
+.card-body {
+  padding: 1rem 1.25rem;
+}
+
+.table {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+}
+
+.table thead {
+  background: #d9e7ff;
+  font-weight: 700;
+}
+
+.table thead th {
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #fff8f8;
+  transform: translateY(-1px);
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* căn giữa bảng */
+.main-content table thead th,
+.main-content table tbody td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+#staffTable {
+  margin-bottom: 0;
+}
+
+#staffTable th,
+#staffTable td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+#staffTable .badge {
+  font-size: 0.75rem;
+}
+
+/* ALERT & CONFIRM BOX STAFF */
+#alertBoxStaff,
+#confirmDeleteBoxStaff {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+#alertBoxStaff.show,
+#confirmDeleteBoxStaff.show {
+  display: flex !important;
+}
+
+.alert-content,
+.confirm-content {
+  background: #fff;
+  padding: 22px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  min-width: 320px;
+  max-width: 420px;
+  text-align: center;
+}
+
+#alertIconStaff {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: #c8102e;
+}
+
+#alertMessageStaff {
+  margin-bottom: 16px;
+}
+
+#alertBoxStaff .confirm-btn {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  background: #c8102e;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#alertBoxStaff .confirm-btn:hover {
+  background: #9e0d23;
+}
+
+#confirmDeleteBoxStaff .confirm-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  margin-top: auto;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .dashboard {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .dashboard-left,
+  .main-content {
+    width: 100%;
+  }
+
+  .dashboard-left {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.75rem;
+    border-radius: 12px;
+  }
+
+  .dashboard-left .dashboard-title,
+  .dashboard-left .avatar,
+  .dashboard-left a span {
+    display: none;
+  }
+
+  .dashboard-left a {
+    padding: 10px;
+    justify-content: center;
+    margin: 0 3px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .main-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 4px 12px;
+  }
+
+  .navbar-brand span {
+    display: none;
+  }
+
+  .login-btn,
+  .logoutBtn {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
+
+  .main-content h3,
+  .main-content h2 {
+    font-size: 1.1rem;
+  }
+}

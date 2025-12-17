@@ -1,0 +1,229 @@
+/* ===== LAYOUT CHUNG ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eef2f7;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* ===== NAVBAR (giống staff-products) ===== */
+.navbar {
+  background-color: #c8102e;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 14px !important;
+  border-radius: 999px;
+  transition: 0.25s ease;
+}
+
+/* giữ caret dropdown */
+.navbar-nav .nav-link:not(.dropdown-toggle)::after {
+  content: none;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  background: rgba(255,255,255,0.92) !important;
+  color: #c8102e !important;
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+/* DROPDOWN */
+.dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  padding: 8px;
+  font-weight: 500;
+}
+
+.dropdown-item {
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: 0.25s ease;
+}
+
+.dropdown-item:hover {
+  background: #ffeaea;
+  color: #c8102e;
+}
+
+.dropdown-item.text-danger:hover {
+  background: #ffd2d2;
+  color: #a30000 !important;
+}
+
+/* ===== FILTER BAR + TABLE ===== */
+.filter-bar {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.table-container {
+  background: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.table-container table thead {
+  background: #c8102e;
+  color: #fff;
+}
+
+.table-container table tbody tr:hover {
+  background: #fff3f3 !important;
+}
+
+.text-winmart {
+  color: #c8102e;
+}
+
+/* ===== FORM ELEMENTS ===== */
+.form-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+/* ===== BUTTONS ===== */
+.btn-add {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.btn-add:hover {
+  background: linear-gradient(90deg, #16a34a, #15803d);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transform: translateY(-1px);
+}
+
+/* ===== PRODUCT IMAGE TRONG MODAL ===== */
+.product-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* ===== VOUCHER CARD ===== */
+.voucher-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.voucher-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.voucher-card input[type="radio"] {
+  margin-top: 4px;
+}
+.voucher-card label {
+  margin: 0;
+  cursor: pointer;
+}
+.voucher-card .title {
+  font-weight: 600;
+  color: #111827;
+}
+.voucher-card .desc {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+.voucher-card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 4px 10px rgba(37,99,235,0.15);
+}
+
+/* ===== ALERT BOX ===== */
+#alertBoxInvoice {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#alertBoxInvoice.show {
+  display: flex;
+}
+
+.alert-content {
+  background: white;
+  padding: 22px 28px;
+  border-radius: 14px;
+  width: 360px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.confirm-btn {
+  margin-top: 12px;
+  background: #c8102e;
+  border: none;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  min-width: 90px;
+}
+
+.confirm-btn:hover {
+  background: #9e0d23;
+  box-shadow: 0 0 8px rgba(200,16,46,0.45);
+  transform: translateY(-1px);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}

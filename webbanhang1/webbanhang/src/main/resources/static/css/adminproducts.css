@@ -1,0 +1,411 @@
+/* ========== ADMIN PRODUCTS (adminproducts.css) ========== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== LAYOUT CHUNG ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #eef2f7;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* cho .main-content nếu dùng */
+.main-content {
+  flex: 1;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background-color: #c8102e;
+  padding: 6px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-brand img {
+  height: 32px;
+  width: auto;
+}
+
+#welcomeUser {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* NAV-LINK pill */
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 14px !important;
+  border-radius: 999px;
+  transition: 0.25s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  background: rgba(255,255,255,0.92) !important;
+  color: #c8102e !important;
+}
+
+/* ===== LOGIN / LOGOUT BTN ===== */
+.login-btn,
+.logoutBtn {
+  background: #fff;
+  color: #c8102e;
+  border: none;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 20px;
+  transition: 0.25s ease;
+}
+
+.login-btn:hover,
+.logoutBtn:hover {
+  background: #ffe5e5;
+  color: #9e0d23;
+}
+
+/* ===== SIDEBAR / DASHBOARD ===== */
+.dashboard {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  flex: 1;
+}
+
+.dashboard-left {
+  width: 22%;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-title {
+  text-align: center;
+  font-weight: 700;
+  color: #c8102e;
+  margin-bottom: 15px;
+}
+
+.dashboard-left .avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.dashboard-left .avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #c8102e;
+  object-fit: cover;
+}
+
+.dashboard-left a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.dashboard-left a:hover,
+.dashboard-left a.active {
+  background: #ffeaea;
+  color: #c8102e;
+  border-left: 4px solid #c8102e;
+}
+
+.dashboard-left i {
+  font-size: 22px;
+  color: #c8102e;
+}
+
+/* ===== MAIN CONTENT (panel bên phải) ===== */
+.dashboard-right {
+  width: 78%;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  min-height: 80vh;   /* 👉 làm panel cao như trang nhân viên, nav trái cũng dài theo */
+}
+
+.dashboard-right h3 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* ===== TABLE SẢN PHẨM ===== */
+.table-container {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.table {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+}
+
+.table thead {
+  background: #d9e7ff;
+  font-weight: 700;
+}
+
+.table thead th {
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #fff8f8 !important;
+  transform: translateY(-1px);
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* căn giữa bảng */
+.table-container table thead th,
+.table-container table tbody td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ===== NÚT HEADER ===== */
+#btnAddProduct {
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 8px 18px;
+}
+
+#btnLockSelected {
+  background: #fff;
+  color: #c8102e;
+  border: 2px solid #c8102e;
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 8px 18px;
+  transition: 0.25s ease;
+}
+
+#btnLockSelected:hover {
+  background: #c8102e;
+  color: #fff;
+  border-color: #c8102e;
+  box-shadow: 0 0 8px rgba(200,16,46,0.45);
+}
+
+/* ===== IMAGE UPLOAD ===== */
+.image-upload {
+  border: 2px dashed #c8102e;
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  background: #f3f4f6;
+  font-size: 48px;
+  color: #777;
+  transition: 0.3s;
+}
+
+.image-upload:hover {
+  background: #ffecec;
+  border-color: #9e0d23;
+}
+
+.image-upload img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== ALERT BOX PRODUCT ===== */
+#alertBoxProduct {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#alertBoxProduct.show {
+  display: flex !important;
+}
+
+.alert-content {
+  background: #fff;
+  padding: 22px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  min-width: 320px;
+  max-width: 420px;
+  text-align: center;
+}
+
+#alertIconProduct {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: #c8102e;
+}
+
+.confirm-btn {
+  margin-top: 12px;
+  background: #c8102e;
+  border: none;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  min-width: 90px;
+}
+
+.confirm-btn:hover {
+  background: #9e0d23;
+  box-shadow: 0 0 8px rgba(200,16,46,0.45);
+  transform: translateY(-1px);
+}
+
+/* ===== CONFIRM LOCK BOX ===== */
+#confirmDeleteBox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+#confirmDeleteBox.show {
+  display: flex !important;
+}
+
+.confirm-content {
+  background: #fff;
+  padding: 24px 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  min-width: 320px;
+  max-width: 420px;
+  text-align: center;
+}
+
+.confirm-buttons {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.confirm-buttons button {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 8px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  margin-top: auto;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .dashboard {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .dashboard-left,
+  .dashboard-right,
+  .main-content {
+    width: 100%;
+  }
+
+  .dashboard-left {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.75rem;
+    border-radius: 12px;
+  }
+
+  .dashboard-left .dashboard-title,
+  .dashboard-left .avatar,
+  .dashboard-left a span {
+    display: none;
+  }
+
+  .dashboard-left a {
+    padding: 10px;
+    justify-content: center;
+    margin: 0 3px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .dashboard-right,
+  .main-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 4px 12px;
+  }
+}

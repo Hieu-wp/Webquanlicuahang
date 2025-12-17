@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WinMart Admin – Quản lý hóa đơn</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin-invoice-manager.css"><!-- đổi tên nếu muốn -->
+</head>
+<body>
+
+<!-- 🔥 NAVBAR giống promotion -->
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/admin">
+      <img src="https://img.freepik.com/free-vector/w-logo-branding-identity-corporate-vector-logo-design_460848-18625.jpg?semt=ais_hybrid&w=740&q=80" alt="logo">
+      WinMart Admin
+    </a>
+
+    <div class="ms-auto d-flex align-items-center gap-3">
+      <span id="welcomeUser" class="fw-bold text-white"></span>
+      <button id="logoutBtn" class="logoutBtn">Đăng xuất</button>
+    </div>
+  </div>
+</nav>
+
+<!-- 🔥 MAIN CONTENT giống promotion -->
+<div class="main-content">
+  <div class="dashboard container-fluid mt-3">
+    <!-- SIDEBAR -->
+    <div class="dashboard-left">
+      <div class="dashboard-title">Bảng điều khiển</div>
+      <div class="avatar">
+        <img src="https://pm1.aminoapps.com/6346/0ee1a3e225190b0b742fe1cbf05e8098fd62d048_hq.jpg" alt="Avatar">
+      </div>
+
+      <a href="/admin"><i class="bi bi-speedometer2"></i> Tổng quan</a>
+      <a href="/adminproducts"><i class="bi bi-box-seam"></i> Quản lý sản phẩm</a>
+      <a href="/admin-customer-manager"><i class="bi bi-people"></i> Quản lý khách hàng</a>
+      <a href="/admin-invoice-manager" class="active"><i class="bi bi-receipt"></i> Quản lý hóa đơn</a>
+      <a href="/admin-promotion-manager"><i class="bi bi-percent"></i> Khuyến mãi</a>
+      <a href="/admin-staff-manager"><i class="bi bi-person-badge"></i> Quản lý nhân viên</a>
+      <a href="/admin-categories"><i class="bi bi-grid-3x3-gap-fill"></i> Danh mục</a>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="dashboard-right">
+      <!-- HEADER + BUTTON -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0 text-danger fw-bold">
+          <i class="bi bi-receipt me-2"></i> Quản lý Hóa đơn
+        </h3>
+        <button class="btn btn-danger rounded-pill px-4" onclick="moModalHoaDon()">
+          <i class="bi bi-plus-circle-fill"></i> Tạo hóa đơn
+        </button>
+      </div>
+
+      <!-- BỘ LỌC -->
+      <div class="card filter-card mb-4">
+        <div class="card-body">
+          <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+              <label class="form-label fw-medium">Mã hóa đơn</label>
+              <input type="text" class="form-control" id="filterMaHD" placeholder="#HD00123">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-medium">Ngày giao dịch</label>
+              <!-- JS dùng id filterNgay -->
+              <input type="date" class="form-control" id="filterNgay">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-medium">Trạng thái</label>
+              <!-- JS dùng filterTrangThai, value có thể '' / PAID / PENDING -->
+              <select class="form-select" id="filterTrangThai">
+                <option value="">Tất cả</option>
+                <option value="PAID">Đã thanh toán</option>
+                <option value="PENDING">Chờ thanh toán</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BẢNG HÓA ĐƠN -->
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+              <tr>
+                <th class="ps-4">Mã HĐ</th>
+                <th>Ngày giao dịch</th>
+                <th>Khách hàng</th>
+                <th>SL SP</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th class="text-center">Hành động</th>
+              </tr>
+              </thead>
+              <tbody id="invoiceBody">
+              <!-- JS renderInvoices() sẽ đổ data vào đây -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dashboard-right -->
+  </div><!-- /dashboard -->
+</div><!-- /main-content -->
+
+<!-- 🔔 ALERT BOX (giống staff, id dùng trong JS) -->
+<div id="alertBoxInvoice">
+  <div class="alert-content">
+    <div id="alertIconInvoice"></div>
+    <p id="alertMessageInvoice">Thông báo</p>
+    <button type="button" class="confirm-btn" onclick="closeAlertInvoice()">OK</button>
+  </div>
+</div>
+
+<!-- 🔥 MODAL TẠO / SỬA HÓA ĐƠN -->
+<div class="modal fade" id="invoiceEditModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="invoiceModalTitle">
+          <i class="bi bi-plus-circle-fill"></i> Thêm Hóa đơn mới
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <!-- FORM HÓA ĐƠN -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label class="form-label">Mã hóa đơn</label>
+            <input type="text" class="form-control" id="maHD" readonly>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Khách hàng</label>
+            <!-- JS loadCustomers() dùng id này -->
+            <div class="position-relative">
+                <input 
+                    id="customerSelect" 
+                    class="form-control" 
+                    type="text" 
+                    placeholder="Nhập tên hoặc ID khách hàng"
+                    autocomplete="off"
+                >
+
+                <ul id="customerSuggest" class="list-group position-absolute w-100">
+                </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Ngày giao dịch</label>
+            <input type="date" class="form-control" id="ngayTao">
+          </div>
+        </div>
+
+        <!-- DANH SÁCH SP TRONG HÓA ĐƠN -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Sản phẩm trong hóa đơn</label>
+          <table class="table table-bordered table-sm align-middle">
+            <thead class="table-danger text-center">
+            <tr>
+              <th>Mã SP</th>
+              <th>Tên SP</th>
+              <th>Số lượng</th>
+              <th>Đơn giá</th>
+              <th>Thành tiền</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody id="dsSanPham"></tbody>
+          </table>
+          <button type="button" class="btn btn-success btn-sm mt-2" onclick="moModalSanPham()">
+            <i class="bi bi-plus-circle"></i> Thêm sản phẩm
+          </button>
+        </div>
+
+        <!-- VOUCHER + TỔNG TIỀN -->
+        <div class="card bg-light border-0 shadow-sm p-3 mt-3">
+          <label class="form-label fw-semibold">Mã giảm giá</label>
+          <div class="d-flex justify-content-between align-items-center bg-white border rounded p-2 mt-2">
+            <input type="text" id="txtVoucherManual" class="form-control form-control-sm border-0"
+                   placeholder="Nhập mã voucher (nếu có)…">
+            <button class="btn btn-outline-warning btn-sm ms-2" type="button" onclick="moModalVoucher()">
+              <i class="bi bi-ticket-perforated me-1"></i> Chọn voucher
+            </button>
+          </div>
+          <div class="mt-3 text-end">
+            <div class="text-muted">Giá gốc: <span id="giaGoc">0</span> đ</div>
+            <div class="text-danger">Giảm giá: -<span id="giamGia">0</span> đ</div>
+            <div class="fw-bold fs-5">Tổng cộng: <span id="tongTien">0</span> đ</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer border-top pt-2">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" onclick="luuHoaDon()">
+          <i class="bi bi-save"></i> Lưu hóa đơn
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MODAL CHỌN SẢN PHẨM -->
+<div class="modal fade" id="productSelectModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-box-seam"></i> Chọn sản phẩm
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+          <input type="text" id="timSanPham" class="form-control" placeholder="Tìm sản phẩm theo tên...">
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle table-hover table-bordered">
+            <thead class="table-success text-center">
+            <tr>
+              <th><input type="checkbox" id="chonTatCa" onclick="chonTatCaSP(this)"></th>
+              <th>Ảnh</th>
+              <th>Tên sản phẩm</th>
+              <th>Giá (₫)</th>
+            </tr>
+            </thead>
+            <tbody id="danhSachSanPham" class="text-center">
+            <!-- JS loadProducts() đổ vào -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer border-top pt-2">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-success" onclick="themSanPhamVaoHoaDon()">
+          <i class="bi bi-cart-plus"></i> Thêm vào hóa đơn
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MODAL CHỌN VOUCHER -->
+<div class="modal fade" id="voucherModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered" style="max-width:500px">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-ticket-perforated"></i> Chọn voucher
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="voucher-list">
+          <!-- JS renderPromotions() đổ danh sách voucher vào đây -->
+        </div>
+      </div>
+      <div class="modal-footer border-top pt-2">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-success" onclick="apDungVoucher()">
+          Áp dụng
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MODAL CHI TIẾT HÓA ĐƠN -->
+<div class="modal fade" id="invoiceDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#1d3557;color:white;">
+        <h5 class="m-0">Chi Tiết Hóa Đơn <span id="modal-maHD"></span></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3 text-muted small">
+          <div class="col-6">
+            <p class="mb-1"><strong>Ngày lập:</strong> <span id="modal-ngay"></span></p>
+            <p class="mb-1"><strong>Nhân viên:</strong> <span id="modal-nv"></span></p>
+          </div>
+          <div class="col-6 text-end">
+            <p class="mb-1"><strong>Khách hàng:</strong> <span id="modal-khach"></span></p>
+            <p class="mb-1"><strong>SĐT:</strong> <span id="modal-sdt"></span></p>
+          </div>
+        </div>
+        <hr>
+        <h6 class="fw-bold text-danger mb-3">Danh sách sản phẩm</h6>
+        <div class="table-responsive">
+          <table class="table table-sm table-hover align-middle">
+            <thead class="table-light">
+            <tr>
+              <th>Sản phẩm</th>
+              <th class="text-center">SL</th>
+              <th class="text-end">Giá</th>
+              <th class="text-end">Thành tiền</th>
+            </tr>
+            </thead>
+            <tbody id="modal-sanpham" class="small"></tbody>
+          </table>
+        </div>
+
+        <div class="mt-3 text-end small">
+          <div>Giá gốc: <span id="modal-giaGoc"></span> đ</div>
+          <div>Giảm giá: -<span id="modal-giamGia"></span> đ</div>
+          <div>Mã voucher: <span id="modal-voucherCode"></span></div>
+        </div>
+
+        <div class="text-end mt-3">
+          <h4 class="text-winmart fw-bold">
+            Tổng cộng: <span id="modal-tong"></span>
+          </h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button class="btn text-white px-4" style="background:#e63946;" onclick="printCurrentInvoice()">
+          <i class="bi bi-printer"></i> In hóa đơn
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-2 mt-4">
+  © 2025 - Hệ thống quản lý cửa hàng Walmart |
+  <span id="adminFooterName"></span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="javascript/admin-invoice-manager.js"></script>
+<script src="javascript/footer.js"></script>
+</body>
+</html>

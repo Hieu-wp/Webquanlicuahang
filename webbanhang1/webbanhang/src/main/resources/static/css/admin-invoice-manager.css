@@ -1,0 +1,411 @@
+/* ========== ADMIN INVOICE MANAGER (admin-invoice-manager.css) ========== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== LAYOUT CHUNG ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #eef2f7;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* wrapper quanh dashboard */
+.main-content {
+  flex: 1;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #c8102e;
+  padding: 6px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-brand img {
+  height: 32px;
+  width: auto;
+}
+
+#welcomeUser {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* LOGIN / LOGOUT BTN */
+.logoutBtn {
+  background: #fff;
+  color: #c8102e;
+  border: none;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 20px;
+  transition: 0.25s ease;
+}
+
+.logoutBtn:hover {
+  background: #ffe5e5;
+  color: #9e0d23;
+}
+
+/* NAV-LINK nếu sau này có dùng */
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 14px !important;
+  border-radius: 999px;
+  transition: 0.25s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  background: rgba(255,255,255,0.92) !important;
+  color: #c8102e !important;
+}
+
+/* ===== DASHBOARD / SIDEBAR ===== */
+.dashboard {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  flex: 1;
+}
+
+.dashboard-left {
+  width: 22%;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.dashboard-title {
+  text-align: center;
+  font-weight: 700;
+  color: #c8102e;
+  margin-bottom: 15px;
+}
+
+.dashboard-left .avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.dashboard-left .avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #c8102e;
+  object-fit: cover;
+}
+
+.dashboard-left a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.dashboard-left a:hover,
+.dashboard-left a.active {
+  background: #ffeaea;
+  color: #c8102e;
+  border-left: 4px solid #c8102e;
+}
+
+.dashboard-left i {
+  font-size: 22px;
+  color: #c8102e;
+}
+
+/* ===== MAIN PANEL (bên phải) ===== */
+.dashboard-right {
+  width: 78%;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  min-height: 80vh;
+}
+
+.dashboard-right h3 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* ===== CARD + FILTER ===== */
+.card {
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  border: none;
+}
+
+.card-body {
+  padding: 14px;
+}
+
+.filter-card {
+  padding: 18px 18px 10px;
+  margin-bottom: 18px;
+}
+
+.filter-card .form-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.filter-card .form-control,
+.filter-card .form-select {
+  border-radius: 10px;
+  border-color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.filter-card .form-control:focus,
+.filter-card .form-select:focus {
+  box-shadow: 0 0 0 2px rgba(200,16,46,0.2);
+  border-color: #c8102e;
+}
+
+/* ===== TABLE HÓA ĐƠN ===== */
+.table {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+}
+
+/* HEADER BẢNG – màu RGB(207,226,255) giống promotion */
+.table thead {
+  background-color: rgb(207, 226, 255) !important;
+}
+
+.table thead tr {
+  background-color: inherit !important;
+}
+
+.table thead th {
+  background-color: inherit !important;
+  border-bottom-width: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* BODY BẢNG – căn giữa ô */
+.table tbody tr td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table tbody tr td:first-child {
+  text-align: left;
+}
+
+/* màu tiền WinMart */
+.text-winmart {
+  color: #c8102e;
+  font-weight: 700;
+}
+
+/* ===== BUTTONS ===== */
+.btn-view {
+  background: #1d3557;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  padding-inline: 10px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-view:hover {
+  background: #142542;
+  color: #fff;
+}
+
+/* ===== IMG SẢN PHẨM ===== */
+.product-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* ===== VOUCHER LIST ===== */
+.voucher-list {
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.voucher-card {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.voucher-card input[type="radio"] {
+  margin-top: 4px;
+}
+
+.voucher-card label {
+  margin: 0;
+  cursor: pointer;
+  width: 100%;
+}
+
+.voucher-card .title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.voucher-card .desc {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.voucher-card:hover {
+  background: #ffeaea;
+  border-color: #c8102e;
+}
+
+/* ===== ALERT BOX ===== */
+#alertBoxInvoice {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#alertBoxInvoice.show {
+  display: flex;
+}
+
+.alert-content {
+  background: #fff;
+  padding: 22px 28px;
+  border-radius: 14px;
+  width: 360px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+#alertIconInvoice {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.confirm-btn {
+  margin-top: 12px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  background: #c8102e;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.confirm-btn:hover {
+  background: #9e0d23;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  margin-top: auto;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .dashboard {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .dashboard-left,
+  .dashboard-right,
+  .main-content {
+    width: 100%;
+  }
+
+  .dashboard-left {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.75rem;
+    border-radius: 12px;
+  }
+
+  .dashboard-left .dashboard-title,
+  .dashboard-left .avatar {
+    display: none;
+  }
+
+  .dashboard-left a {
+    padding: 10px;
+    justify-content: center;
+    margin: 0 3px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .dashboard-right,
+  .main-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 4px 12px;
+  }
+
+  .filter-card {
+    padding: 12px;
+  }
+}

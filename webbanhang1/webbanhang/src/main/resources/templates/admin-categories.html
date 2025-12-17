@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinMart Admin – Quản lý danh mục</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/admin-categories.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/admin">
+      <img src="https://img.freepik.com/free-vector/w-logo-branding-identity-corporate-vector-logo-design_460848-18625.jpg?semt=ais_hybrid&w=740&q=80"
+           alt="logo">
+      WinMart Admin
+    </a>
+
+    <div class="ms-auto d-flex align-items-center gap-3">
+      <span id="welcomeUser" class="fw-bold text-white"></span>
+      <button id="logoutBtn" class="logoutBtn">Đăng xuất</button>
+    </div>
+  </div>
+</nav>
+
+<div class="dashboard container-fluid mt-3">
+  <!-- SIDEBAR -->
+  <div class="dashboard-left">
+    <div class="dashboard-title">Bảng điều khiển</div>
+    <div class="avatar">
+        <img src="https://pm1.aminoapps.com/6346/0ee1a3e225190b0b742fe1cbf05e8098fd62d048_hq.jpg" alt="Avatar">
+    </div>
+    <a href="/admin"><i class="bi bi-speedometer2"></i> Tổng quan</a>
+    <a href="/adminproducts"><i class="bi bi-box-seam"></i> Quản lý sản phẩm</a>
+    <a href="/admin-customer-manager"><i class="bi bi-people"></i> Quản lý khách hàng</a>
+    <a href="/admin-invoice-manager"><i class="bi bi-receipt"></i> Quản lý hóa đơn</a>
+    <a href="/admin-promotion-manager"><i class="bi bi-percent"></i> Khuyến mãi</a>
+    <a href="/admin-staff-manager"><i class="bi bi-person-badge"></i> Quản lý nhân viên</a>
+    <a href="/admin-categories" class="active"><i class="bi bi-grid-3x3-gap-fill"></i> Danh mục</a>
+  </div>
+
+  <!-- MAIN -->
+  <div class="dashboard-right">
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3>Quản lý danh mục</h3>
+
+          <div class="d-flex gap-2">
+              <button class="btn btn-success" id="btnAddCategory">
+                  <i class="bi bi-plus-circle"></i> Thêm danh mục
+              </button>
+          </div>
+      </div>
+
+      <!-- SEARCH + FILTER -->
+      <div class="filter-bar mb-3 p-3 bg-white rounded shadow-sm">
+          <div class="row g-3">
+              <div class="col-md-5">
+                  <label class="form-label fw-bold">Tìm kiếm danh mục</label>
+                  <input type="text" id="searchCategory" class="form-control"
+                         placeholder="Nhập tên danh mục...">
+              </div>
+
+              <div class="col-md-3">
+                  <label class="form-label fw-bold">Trạng thái</label>
+                  <select id="statusFilter" class="form-select">
+                      <option value="">Tất cả</option>
+                      <option value="1">Hiển thị</option>
+                      <option value="0">Đã khóa</option>
+                  </select>
+              </div>
+
+              <div class="col-md-4 d-flex align-items-end">
+                  <button class="btn btn-warning w-100" id="btnLockSelected">
+                      <i class="bi bi-lock-fill"></i> Khóa đã chọn (0)
+                  </button>
+              </div>
+          </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="table-container">
+          <table class="table align-middle table-hover">
+              <thead class="table-primary text-center">
+                  <tr>
+                      <th style="width:40px;">
+                          <input class="form-check-input" type="checkbox" id="checkAll">
+                      </th>
+                      <th>STT</th>
+                      <th>Tên danh mục</th>
+                      <th>Sản phẩm</th>
+                      <th>Trạng thái</th>
+                      <th>Ngày tạo</th>
+                      <th>Hành động</th>
+                  </tr>
+              </thead>
+              <tbody id="categoryTable" class="text-center"></tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+<!-- MODAL THÊM / SỬA DANH MỤC -->
+<div class="modal fade" id="categoryModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+        <h4 id="categoryModalTitle">Thêm danh mục</h4>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="categoryForm">
+          <input type="hidden" id="categoryId">
+
+          <div class="mb-3">
+              <label class="form-label fw-bold">Tên danh mục</label>
+              <input type="text" id="categoryName" class="form-control"
+                     placeholder="Nhập tên danh mục">
+          </div>
+
+          <div class="mb-3">
+              <label class="form-label fw-bold">Mô tả</label>
+              <textarea id="categoryDescription" class="form-control"
+                        rows="3" placeholder="Nhập mô tả (nếu có)"></textarea>
+          </div>
+
+          <div class="mb-3">
+              <label class="form-label fw-bold">Trạng thái</label>
+              <select id="categoryStatus" class="form-select">
+                  <option value="1">Hiển thị</option>
+                  <option value="0">Ẩn / Khóa</option>
+              </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button class="btn btn-primary" id="btnSaveCategory">Lưu</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL XEM CHI TIẾT DANH MỤC -->
+<div class="modal fade" id="categoryDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Thông tin danh mục</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Mã danh mục:</strong> <span id="detailMaDM"></span></p>
+        <p><strong>Tên danh mục:</strong> <span id="detailTenDM"></span></p>
+        <p><strong>Mô tả:</strong> <span id="detailMoTa"></span></p>
+        <p><strong>Số lượng sản phẩm:</strong> <span id="detailSoLuong"></span></p>
+        <p>
+          <strong>Danh sách sản phẩm:</strong>
+          <a href="#" id="detailViewProductsLink">Xem chi tiết sản phẩm</a>
+        </p>
+        <p><strong>Trạng thái:</strong> <span id="detailTrangThai"></span></p>
+        <p><strong>Ngày tạo:</strong> <span id="detailNgayTao"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALERT CATEGORY -->
+<div id="alertBoxCategory">
+  <div class="alert-content">
+    <div id="alertIconCategory"></div>
+    <p id="alertMessageCategory"></p>
+    <button class="confirm-btn" onclick="closeAlertCategory()">OK</button>
+  </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-2 mt-4">
+  © 2025 - Hệ thống quản lý cửa hàng Winmart |
+  <span id="adminFooterName"></span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="javascript/admin-categories.js"></script>
+<script src="javascript/footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+body {
+  background-color: #eef2f7;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+.navbar {
+  background-color: #c8102e;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}

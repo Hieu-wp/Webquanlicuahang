@@ -1,0 +1,219 @@
+/* ============ LAYOUT CHUNG ============ */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #f8f9fa;
+    font-family: system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* MAIN CONTENT để footer dính đáy */
+.main-content {
+    flex: 1;
+}
+
+/* ============ NAVBAR GIỐNG CÁC TRANG STAFF KHÁC ============ */
+.navbar {
+    background-color: #c8102e;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #fff !important;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-brand img {
+    height: 32px;
+}
+
+/* NAV-LINK: pill bo tròn */
+.navbar-nav .nav-link {
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.95rem !important;
+    border-radius: 999px;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+/* không override caret dropdown */
+.navbar-nav .nav-link:not(.dropdown-toggle)::after {
+    content: none;
+}
+
+/* hover + active */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    background: rgba(255,255,255,0.92) !important;
+    color: #c8102e !important;
+    box-shadow: 0 0 0 2px #ffffff;
+}
+
+/* ============ DROPDOWN TÀI KHOẢN ============ */
+.dropdown-menu {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    padding: 8px;
+    font-weight: 500;
+}
+
+.dropdown-item {
+    border-radius: 8px;
+    padding: 8px 14px;
+    transition: 0.25s ease;
+}
+
+.dropdown-item:hover {
+    background: #ffeaea;
+    color: #c8102e;
+}
+
+.dropdown-item.text-danger:hover {
+    background: #ffd2d2;
+    color: #a30000 !important;
+}
+
+/* ============ KHỐI NGOÀI CÙNG ============ */
+.page-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* TABLE & FORM */
+.table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.table .form-check-input {
+    transform: scale(1.2);
+}
+
+.page-card .rounded-3 {
+    border-radius: 0.75rem !important;
+}
+
+/* Ô FILTER CARD */
+.card {
+    border-radius: 12px;
+}
+
+.card .form-control,
+.card .form-select {
+    border-radius: 8px;
+}
+
+/* NÚT KHÓA / THÊM DANH MỤC */
+#btnLockSelected {
+    border-radius: 999px;
+    background: #fff;
+    color: #c8102e;
+    border: 2px solid #c8102e;
+    font-weight: 600;
+    padding: 8px 18px;
+    transition: 0.25s ease;
+}
+
+#btnLockSelected:hover {
+    background: #c8102e;
+    color: #fff;
+    border-color: #c8102e;
+    box-shadow: 0 0 8px rgba(200,16,46,0.45);
+}
+
+#btnAddCategory {
+    border-radius: 999px;
+}
+
+/* BẢNG DANH MỤC */
+#tableViewContent .card {
+    border-radius: 12px;
+}
+
+#tableViewContent thead tr {
+    font-weight: 600;
+}
+
+#categoryTable tr td {
+    vertical-align: middle;
+}
+
+/* MODAL */
+.modal-content {
+    border-radius: 14px;
+}
+
+#categoryDescription {
+    min-height: 80px;
+}
+
+/* ALERT BOX CATEGORY */
+#alertBoxCategory {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+#alertBoxCategory.show {
+    display: flex;
+}
+
+#alertBoxCategory .alert-content {
+    background: #fff;
+    padding: 22px 28px;
+    border-radius: 14px;
+    width: 360px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+#alertIconCategory {
+    font-size: 42px;
+    margin-bottom: 8px;
+    color: #c8102e;
+}
+
+/* FOOTER */
+footer {
+    width: 100%;
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .page-card {
+        padding: 10px;
+        margin: 8px;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+}

@@ -1,0 +1,290 @@
+/* ===== LAYOUT CHUNG ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eef2f7;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1; /* đẩy footer xuống đáy */
+}
+
+/* ===== NAVBAR (GIỐNG STAFF) ===== */
+.navbar {
+  background-color: #c8102e;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* NAV-LINK pill bo tròn */
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 14px !important;
+  border-radius: 999px;
+  transition: 0.25s ease;
+}
+
+/* giữ caret cho dropdown-toggle */
+.navbar-nav .nav-link:not(.dropdown-toggle)::after {
+  content: none;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: #c8102e !important;
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+/* DROPDOWN */
+.dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  padding: 8px;
+  font-weight: 500;
+}
+
+.dropdown-item {
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: 0.25s ease;
+}
+
+.dropdown-item:hover {
+  background: #ffeaea;
+  color: #c8102e;
+}
+
+.dropdown-item.text-danger:hover {
+  background: #ffd2d2;
+  color: #a30000 !important;
+}
+
+/* ===== PRODUCT IMAGE ===== */
+.product-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* ===== IMAGE UPLOAD ===== */
+.image-upload {
+  height: 220px;
+  width: 220px;
+  border-radius: 12px;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 48px;
+  color: #777;
+  border: 2px dashed #c8102e;
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.image-upload:hover {
+  background: #ffecec;
+  border-color: #9e0d23;
+}
+
+.image-upload img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== FILTER BAR & TABLE CONTAINER ===== */
+.filter-bar {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.table-container {
+  background: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.table-container thead {
+  background: #c8102e;
+  color: #fff;
+}
+
+.table-container tbody tr:hover {
+  background: #fff3f3 !important;
+}
+
+/* ===== NÚT HEADER (THÊM + KHÓA ĐÃ CHỌN) ===== */
+#btnAddProduct {
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 8px 18px;
+}
+
+#btnLockSelected {
+  background: #fff;
+  color: #c8102e;
+  border: 2px solid #c8102e;
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 8px 18px;
+  transition: 0.25s ease;
+}
+#btnLockSelected:hover {
+  background: #c8102e;
+  color: #fff;
+  border-color: #c8102e;
+  box-shadow: 0 0 8px rgba(200,16,46,0.45);
+}
+
+/* ===== NÚT THAO TÁC TRONG BẢNG (Xem – Sửa – Khóa) ===== */
+.table .btn-sm {
+  padding: 6px 16px !important;
+  border-radius: 999px !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.table td .btn-sm {
+  margin-right: 6px;
+}
+
+/* Cột thao tác rộng hơn một chút cho 3 nút nằm ngang thoải mái */
+.table-container table th:last-child,
+.table-container table td:last-child {
+  width: 230px;
+}
+
+/* các cột khác cho phép xuống dòng mô tả cho đỡ bể layout */
+.table-container table td {
+  vertical-align: middle;
+  /* KHÔNG dùng white-space: nowrap cho toàn bộ td nữa */
+}
+
+/* ===== ALERT ===== */
+#alertBoxProduct {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#alertBoxProduct.show {
+  display: flex;
+}
+
+.alert-content {
+  background: white;
+  padding: 22px 28px;
+  border-radius: 14px;
+  width: 360px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+#alertIconProduct {
+  font-size: 42px;
+  margin-bottom: 8px;
+  color: #c8102e;
+}
+
+.confirm-btn {
+  margin-top: 12px;
+  background: #c8102e;
+  border: none;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  min-width: 90px;
+}
+
+.confirm-btn:hover {
+  background: #9e0d23;
+  box-shadow: 0 0 8px rgba(200,16,46,0.45);
+  transform: translateY(-1px);
+}
+
+/* ===== CONFIRM LOCK BOX ===== */
+#confirmDeleteBox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#confirmDeleteBox.show {
+  display: flex;
+}
+
+.confirm-content {
+  background: white;
+  padding: 24px 30px;
+  border-radius: 14px;
+  width: 360px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.confirm-buttons button {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}

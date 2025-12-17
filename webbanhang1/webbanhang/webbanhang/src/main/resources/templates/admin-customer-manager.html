@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinMart Admin – Quản lý khách hàng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/css/admin-customer-manager.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold">
+            <img src="https://img.freepik.com/free-vector/w-logo-branding-identity-corporate-vector-logo-design_460848-18625.jpg?semt=ais_hybrid&w=740&q=80"
+                 alt="logo" style="height:32px;border-radius:4px;">
+            WinMart Admin
+        </a>
+
+        <div class="ms-auto d-flex align-items-center gap-3">
+            <span id="welcomeUser" class="fw-bold text-white"></span>
+            <button id="logoutBtn" class="logoutBtn">Đăng xuất</button>
+        </div>
+    </div>
+</nav>
+
+<div class="dashboard container-fluid mt-3">
+    <div class="dashboard-left">
+        <div class="dashboard-title">Bảng điều khiển</div>
+        <div class="avatar">
+            <img src="https://pm1.aminoapps.com/6346/0ee1a3e225190b0b742fe1cbf05e8098fd62d048_hq.jpg" alt="Avatar">
+        </div>
+        <a href="/admin"><i class="bi bi-speedometer2"></i> <span>Tổng quan</span></a>
+        <a href="/adminproducts"><i class="bi bi-box-seam"></i> <span>Quản lý sản phẩm</span></a>
+        <a href="/admin-customer-manager" class="active"><i class="bi bi-people"></i> <span>Quản lý khách hàng</span></a>
+        <a href="/admin-invoice-manager"><i class="bi bi-receipt"></i> <span>Quản lý hóa đơn</span></a>
+        <a href="/admin-promotion-manager"><i class="bi bi-percent"></i> <span>Khuyến mãi</span></a>
+        <a href="/admin-staff-manager"><i class="bi bi-person-badge"></i> <span>Quản lý nhân viên</span></a>
+        <a href="/admin-categories"><i class="bi bi-grid-3x3-gap-fill"></i> <span>Danh mục</span></a>
+    </div>
+    <div class="main-content">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="mb-0">Danh sách khách hàng</h3>
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="search-box">
+                    <i class="bi bi-search"></i>
+                    <input type="text" class="form-control search-input" placeholder="Tìm kiếm khách hàng...">
+                </div>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                    <i class="bi bi-plus-circle"></i> Thêm khách hàng
+                </button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Danh sách khách hàng hiện tại
+            </div>
+            <div class="card-body p-3">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-primary text-center">
+                        <tr>
+                            <th style="width:70px;">ID</th>
+                            <th>Họ và tên</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
+                            <th style="width:180px;">Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody id="customerTbody" class="text-center">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addCustomerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Thêm khách hàng</h5>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form id="addCustomerForm">
+                <div class="modal-body">
+                    <div class="mb-2">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="addFullName">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="addEmail">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="addPhone">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label class="form-label">Giới tính</label>
+                            <select class="form-select" id="addGender">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label class="form-label">Ngày sinh</label>
+                            <input type="date" class="form-control" id="addDob">
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="addAddress">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button class="btn btn-primary" type="submit">Lưu</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editCustomerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Cập nhật khách hàng</h5>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form id="editCustomerForm">
+                <div class="modal-body">
+                    <input type="hidden" id="editId">
+
+                    <div class="mb-2">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="editFullName">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="editEmail">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="editPhone">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <label class="form-label">Giới tính</label>
+                            <select class="form-select" id="editGender">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label class="form-label">Ngày sinh</label>
+                            <input type="date" class="form-control" id="editDob">
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="editAddress">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="viewCustomerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title">Thông tin khách hàng</h5>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p><strong>Họ và tên:</strong> <span id="modalName"></span></p>
+                <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+                <p><strong>Số điện thoại:</strong> <span id="modalPhone"></span></p>
+                <p><strong>Địa chỉ:</strong> <span id="modalAddress"></span></p>
+                <p><strong>Giới tính:</strong> <span id="modalGender"></span></p>
+                <p><strong>Ngày sinh:</strong> <span id="modalDob"></span></p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="historyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title">Lịch sử mua hàng</h5>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-secondary">
+                        <tr>
+                            <th>Mã hóa đơn</th>
+                            <th>Ngày giao dịch</th>
+                            <th>Tổng thanh toán</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody id="historyTbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="orderDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title">Chi tiết hóa đơn</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p><strong>Mã hóa đơn:</strong> <span id="detailOrderId"></span></p>
+                <p><strong>Ngày giao dịch:</strong> <span id="detailOrderDate"></span></p>
+                <p><strong>Tổng thanh toán:</strong> <span id="detailOrderTotal"></span></p>
+                <hr>
+                <h6>Sản phẩm:</h6>
+                <div id="detailOrderProducts"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="alertBoxCustomer">
+    <div class="alert-content">
+        <div id="alertIconCustomer"></div>
+        <p id="alertMessageCustomer"></p>
+        <button class="confirm-btn" onclick="closeAlertCustomer()">OK</button>
+    </div>
+</div>
+<div id="confirmDeleteBox">
+    <div class="confirm-content">
+        <h5 class="mb-3">Xóa khách hàng</h5>
+        <p>Bạn có chắc muốn xóa khách hàng này?</p>
+        <div class="confirm-buttons">
+            <button class="btn btn-secondary" id="btnConfirmDeleteNo">Hủy</button>
+            <button class="btn btn-danger" id="btnConfirmDeleteYes">Xóa</button>
+        </div>
+    </div>
+</div>
+
+  <footer class="bg-dark text-white text-center py-2 mt-4">
+    © 2025 - Hệ thống quản lý cửa hàng Walmart | 
+    <span id="adminFooterName"></span>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="javascript/admin-customer-manager.js"></script>
+<script src="javascript/footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eef2f7;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.navbar {
+  background-color: #c8102e;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: #fff !important;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-brand img {
+  height: 32px;
+}
+
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.95rem !important;
+  border-radius: 999px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+/* ❗Không đụng dropdown-toggle để caret hiện lại */
+.navbar-nav .nav-link:not(.dropdown-toggle)::after {
+  content: none;
+}
+
+/* hover + active */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  background: rgba(255,255,255,0.92) !important;
+  color: #c8102e !important;
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+/* DROPDOWN */
+.dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  padding: 8px;
+  font-weight: 500;
+}
+
+.dropdown-item {
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: 0.25s ease;
+}
+
+.dropdown-item:hover {
+  background: #ffeaea;
+  color: #c8102e;
+}
+
+.dropdown-item.text-danger:hover {
+  background: #ffd2d2;
+  color: #a30000 !important;
+}
+
+/* ===== CARD + TABLE ===== */
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f3f4ff;
+}
+
+/* ===== SEARCH BOX ===== */
+.search-box {
+  position: relative;
+  width: 250px;
+}
+.search-box i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+  font-size: 0.9rem;
+}
+.search-box .search-input {
+  padding-left: 35px;
+  height: calc(1.5em + 0.75rem + 2px);
+  line-height: 1.5;
+}
+
+/* ===== MODALS ===== */
+.modal-content {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+.modal-header {
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  color: white;
+  padding: 1rem 1.5rem;
+}
+.modal-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.modal-body {
+  background-color: #f9fafb;
+  padding: 1.5rem 2rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.fancy-input {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  transition: all 0.3s ease;
+  background-color: white;
+  font-size: 0.9rem;
+}
+.fancy-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.15rem rgba(59, 130, 246, 0.25);
+}
+
+/* ===== BUTTONS ===== */
+.btn-gradient {
+  background: linear-gradient(90deg, #2563eb, #0ea5e9);
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  padding: 6px 22px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #1d4ed8, #0284c7);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== ALERT BOX ===== */
+#alertBoxCustomer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+#alertBoxCustomer.show {
+  display: flex;
+}
+#alertBoxCustomer .alert-content {
+  background: #fff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 260px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+#alertIconCustomer {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+#alertMessageCustomer {
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.confirm-btn {
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== CONFIRM DELETE BOX ===== */
+#confirmDeleteBox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100;
+}
+#confirmDeleteBox.show {
+  display: flex;
+}
+#confirmDeleteBox .confirm-content {
+  background: #fff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  min-width: 280px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+#confirmDeleteBox .confirm-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}

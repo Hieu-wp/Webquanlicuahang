@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Đăng nhập hệ thống</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/login.css" />
+</head>
+
+<body>
+<nav>
+    <ul>
+    
+    </ul>
+</nav>
+
+<div class="maincontainer">
+    <form id="login" class="formlogin" style="display:block;">
+        <h1>Đăng nhập</h1>
+        <div class="input-box">
+            <input id="login-username" type="text" placeholder="Tên đăng nhập" required />
+        </div>
+        <div class="input-box">
+            <input id="login-password" type="password" placeholder="Mật khẩu" required />
+        </div>
+        <div class="remember-forgot">
+            <label><input type="checkbox" /> Lưu mật khẩu</label>
+        </div>
+        <button type="submit" class="btn">Đăng nhập</button>
+        <div class="register-link">
+            <p>Chưa có tài khoản? <a href="register" type="button" onclick="showregister()">Đăng ký</a></p>
+        </div>
+    </form>
+</div>
+<div id="alertBox" class="modal">
+  <div class="modal-content">
+    <div id="alertIcon"></div>
+    <p id="alertMessage"></p>
+<button class="confirm-btn" onclick="closeAlertLogin()">OK</button>
+  </div>
+</div>
+<script src="javascript/login.js"></script>
+<script>
+    function showSidebar() {
+        document.querySelector(".sidebar").style.display = "flex";
+    }
+    function hideSidebar() {
+        document.querySelector(".sidebar").style.display = "none";
+    }
+</script>
+</body>
+</html>

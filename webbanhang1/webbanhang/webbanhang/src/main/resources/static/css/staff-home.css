@@ -1,0 +1,152 @@
+/* ===== LAYOUT CHUNG (để footer dính đáy) ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eef2f7;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* container chính ở trang home sẽ chiếm phần còn lại */
+.container.mt-4 {
+  flex: 1;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background-color: #c8102e;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: #fff !important;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-brand img {
+  height: 32px;
+}
+
+/* NAV-LINK */
+.nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 8px 14px !important;
+  border-radius: 20px;
+  transition: 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(255,255,255,0.92) !important;
+  color: #c8102e !important;
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  padding: 8px;
+  font-weight: 500;
+}
+
+.dropdown-item {
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: 0.25s ease;
+}
+
+.dropdown-item:hover {
+  background: #ffeaea;
+  color: #c8102e;
+}
+
+.dropdown-item.text-danger:hover {
+  background: #ffd2d2;
+  color: #a30000 !important;
+}
+
+/* CARD */
+.card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  width: 100%;
+  margin-top: auto;          /* quan trọng để nó dính đáy trong layout flex */
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}
+
+/* ================= POPUP ĐỔI MẬT KHẨU ================= */
+
+#alertBoxPassword {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: none;              /* mặc định ẩn */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#alertBoxPassword.show {
+  display: flex;              /* show bằng cách add class .show */
+}
+
+#alertBoxPassword .alert-content {
+  background: white;
+  padding: 22px 28px;
+  border-radius: 14px;
+  width: 360px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+#alertIconPassword {
+  font-size: 36px;
+  /* màu sẽ set bằng JS (xanh/red) */
+  margin-bottom: 10px;
+}
+
+/* nút OK */
+#alertConfirmPassword {
+  margin-top: 12px;
+  background: #c8102e;
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#alertConfirmPassword:hover {
+  background: #9e0d23;
+}
